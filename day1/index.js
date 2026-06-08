@@ -35,15 +35,27 @@
 // Example:
 // Input: 3, 7, 5  → Output: 7
 // Hint: Use Math.max() or if-else conditions.
- function largest(a, b, c){
-    if(a>b && a>c){
-        return a;
-    }
-    else if(b>a && b>c){
-return b;
-    }
-    else{
-        return c;
-    }
- }
-    console.log(largest(1000,3,2))
+//  function largest(a, b, c){
+//     if(a>b && a>c){
+//         return a;
+//     }
+//     else if(b>a && b>c){
+// return b;
+//     }
+//     else{
+//         return c;
+//     }
+//  }
+//     console.log(largest(1000,3,2))
+
+// Problem 4: Celsius to Fahrenheit  [Easy]
+// Description: Write a function toFahrenheit(celsius) that converts a Celsius temperature to Fahrenheit.
+// Example:
+// Input: 0   → Output: 32Input: 100 → Output: 212
+// Hint: Formula: (C × 9/5) + 32
+
+function toFahrenheit(celsius){
+    return (celsius * 9/5) + 32;
+}
+console.log(toFahrenheit(0))
+console.log(toFahrenheit(100))
