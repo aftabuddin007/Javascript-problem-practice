@@ -53,10 +53,22 @@
 // Input: 'hello world'  → Output: 'Hello World'
 // Hint: Use split(' '), map(), and join(' ').
 
-function titleCase(str){
-    const word =str.split(' ');
-    const capitalizedWords = word.map(word => word.charAt(0).toUpperCase() + word.slice(1));
-    return capitalizedWords.join(' ');
+// function titleCase(str){
+//     const word =str.split(' ');
+//     const capitalizedWords = word.map(word => word.charAt(0).toUpperCase() + word.slice(1));
+//     return capitalizedWords.join(' ');
 
+// }
+// console.log(titleCase('welcome to javascript'))
+
+// Problem 10: Count Occurrences of a Character  [Easy]
+// Description: Write a function countChar(str, char)
+//  that returns how many times a character appears in a string.
+// Example:
+// Input: 'banana', 'a'  → Output: 3
+// Hint: Use split(char).length - 1 or a loop.
+function countChar(str, char){
+    const sentence = str.split(char);
+    return sentence.length - 1;
 }
-console.log(titleCase('welcome to javascript'))
+console.log(countChar('bananaoooooo', 'o'))
