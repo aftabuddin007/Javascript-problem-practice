@@ -16,16 +16,32 @@
 // Input: 'hello'   → Output: 2Input: 'javascript' → Output: 3
 // Hint: Use a loop or match() with a regular expression.
 
-function countVowels(str){
-const sentence = str.toLowerCase();
-    let count = 0 ;
-const vowels = ['a', 'e', 'i', 'o', 'u'];
-   for(let i = 0 ; i < sentence.length ; i++){
-if(vowels.includes(sentence[i])){
-    count++;
-}
+// function countVowels(str){
+// const sentence = str.toLowerCase();
+//     let count = 0 ;
+// const vowels = ['a', 'e', 'i', 'o', 'u'];
+//    for(let i = 0 ; i < sentence.length ; i++){
+// if(vowels.includes(sentence[i])){
+//     count++;
+// }
 
-      }
-      return count;
+//       }
+//       return count;
+// }
+// console.log(countVowels('Welcome'))
+
+// Problem 8: Check Palindrome  [Easy]
+// Description: Write a function isPalindrome(str) that returns
+//  true if the string reads the same forwards and backwards.
+// Example:
+// Input: 'racecar'  → Output: trueInput: 'hello'    → Output: false
+// Hint: Compare the string to its reverse.
+
+function isPalindrome(str){
+    const sentence = str.toLowerCase().replace(/[^a-z0-9]/g, '');
+    const reversed = sentence.split('').reverse().join('');
+    return sentence === reversed;
+
 }
-console.log(countVowels('Welcome'))
+console.log(isPalindrome("Welcome"))
+console.log(isPalindrome("racecar"))
