@@ -79,4 +79,4 @@ function checkSign(n){
 }
 console.log(checkSign(-5))
 console.log(checkSign(3))
-console.log(checkSign("asw"))
+console.log(checkSign(0))
