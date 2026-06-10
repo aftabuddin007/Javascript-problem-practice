@@ -52,24 +52,26 @@
 // Input: [1, [2, 3], [4, 5]]  → Output: [1, 2, 3, 4, 5]
 // Hint: Use flat() or reduce() with concat().
  
-// function flattenArray(arr){
-
-// }
-
+function flattenArray(arr){
+    const flattened = arr.reduce((acc, cur) => acc.concat(cur), []);
+    return flattened;
+}
+const values = [1, [2, 3], [4, 5]];
+console.log(flattenArray(values))
 // Problem 15: Chunk an Array  [Medium]
 // Description: Write a function chunkArray(arr, size) 
 // that splits an array into chunks of a given size.
 // Example:
 // Input: [1,2,3,4,5], 2  → Output: [[1,2],[3,4],[5]]
 // Hint: Use a while loop with slice().
- function chunkArray(arr, size){
-        const chunked = [];
-        let index = 0;
-        while (index < arr.length){
-            chunked.push(arr.slice(index, index + size));
-            index += size;
-        }      
-          return chunked;
- }
- const values = [1,2,3,4,5];
- console.log(chunkArray(values, 3))
+//  function chunkArray(arr, size){
+//         const chunked = [];
+//         let index = 0;
+//         while (index < arr.length){
+//             chunked.push(arr.slice(index, index + size));
+//             index += size;
+//         }      
+//           return chunked;
+//  }
+//  const values = [1,2,3,4,5];
+//  console.log(chunkArray(values, 3))
