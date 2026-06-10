@@ -20,14 +20,29 @@
 // Input: [3, 1, 7, 2, 9]  → Output: 9
 // Hint: Loop through and track the largest value found.
 
-function findMax(arr){
-    let max = arr[0];
-    for (let i = 1; i <arr.length;i++){
-        if(arr[i] > max){
-            max = arr[i];
-        }   
-    }
-    return max;
+// function findMax(arr){
+//     let max = arr[0];
+//     for (let i = 1; i <arr.length;i++){
+//         if(arr[i] > max){
+//             max = arr[i];
+//         }   
+//     }
+//     return max;
+// }
+// const values = [1,4,66,7,232,3]
+// console.log(findMax(values))
+
+// Problem 13: Remove Duplicates from Array  [Easy]
+// Description: Write a function removeDuplicates(arr) 
+// that returns a new array with duplicate values removed.
+// Example:
+// Input: [1, 2, 2, 3, 3, 4]  → Output: [1, 2, 3, 4]
+// Hint: Use Set or filter() with indexOf().
+
+function removeDuplicates(arr){
+    const values = arr.filter((item,index)=> arr.indexOf(item) === index);
+    return values;
 }
-const values = [1,4,66,7,232,3]
-console.log(findMax(values))
+const values = [1, 2, 2, 3, 3, 4,5,5,5,5,5];
+console.log(removeDuplicates(values))
+ 
