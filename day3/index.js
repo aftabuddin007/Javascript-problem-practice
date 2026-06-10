@@ -39,10 +39,37 @@
 // Input: [1, 2, 2, 3, 3, 4]  → Output: [1, 2, 3, 4]
 // Hint: Use Set or filter() with indexOf().
 
-function removeDuplicates(arr){
-    const values = arr.filter((item,index)=> arr.indexOf(item) === index);
-    return values;
-}
-const values = [1, 2, 2, 3, 3, 4,5,5,5,5,5];
-console.log(removeDuplicates(values))
+// function removeDuplicates(arr){
+//     const values = arr.filter((item,index)=> arr.indexOf(item) === index);
+//     return values;
+// }
+// const values = [1, 2, 2, 3, 3, 4,5,5,5,5,5];
+// console.log(removeDuplicates(values))
+
+// Problem 14: Flatten a Nested Array  [Medium]
+// Description: Write a function flattenArray(arr) that flattens one level of a nested array.
+// Example:
+// Input: [1, [2, 3], [4, 5]]  → Output: [1, 2, 3, 4, 5]
+// Hint: Use flat() or reduce() with concat().
  
+// function flattenArray(arr){
+
+// }
+
+// Problem 15: Chunk an Array  [Medium]
+// Description: Write a function chunkArray(arr, size) 
+// that splits an array into chunks of a given size.
+// Example:
+// Input: [1,2,3,4,5], 2  → Output: [[1,2],[3,4],[5]]
+// Hint: Use a while loop with slice().
+ function chunkArray(arr, size){
+        const chunked = [];
+        let index = 0;
+        while (index < arr.length){
+            chunked.push(arr.slice(index, index + size));
+            index += size;
+        }      
+          return chunked;
+ }
+ const values = [1,2,3,4,5];
+ console.log(chunkArray(values, 3))
