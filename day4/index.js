@@ -49,11 +49,39 @@
 // Example:
 // Input: {a: 1, b: 2}  → Output: {1: 'a', 2: 'b'}
 // Hint: Use Object.entries() and reduce().
-function invertObject(obj){
-    const inverted = Object.entries(obj).reduce((acc, [key, value]) => {
-        acc[value] = key;
-        return acc;
-    }, {});
-    return inverted;    
+// function invertObject(obj){
+//     const inverted = Object.entries(obj).reduce((acc, [key, value]) => {
+//         acc[value] = key;
+//         return acc;
+//     }, {});
+//     return inverted;    
+// }
+// console.log(invertObject({a: 1, b: 2}))
+
+ 
+// Problem 20: Find Duplicate Values in Array of Objects  [Medium]
+// Description: Given an array of objects, write a 
+// function findDuplicateNames(arr) that returns names that appear more than once.
+// Example:
+// Input: [{name:'Ali'},{name:'Sara'},{name:'Ali'}]Output: ['Ali']
+// Hint: Use a frequency map (object) to count occurrences.
+function findDuplicateNames(arr){
+    const nameCount = {};
+    const duplicates = [];
+    for (const obj of arr) {
+        const name = obj.name;
+        if (nameCount[name]) {
+            nameCount[name]++;
+        } else {
+            nameCount[name] = 1;
+        }
+    }
+    for (const name in nameCount) {
+        if (nameCount[name] > 1) {
+            duplicates.push(name);
+        }
+    }
+    return duplicates;
+
 }
-console.log(invertObject({a: 1, b: 2}))
+console.log(findDuplicateNames([{name:'Ali'}, {name:'Sara'}, {name:'Sara'}]));
