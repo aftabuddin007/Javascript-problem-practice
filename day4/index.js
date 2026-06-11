@@ -28,17 +28,32 @@
 // Input: 15Output: 1,2,Fizz,4,Buzz,Fizz,7,8,Fizz,Buzz,11,Fizz,13,14,FizzBuzz
 // Hint: Check divisibility with the % operator in the right order.
 
-function fizzBuzz(n){
-    for(let i = 1; i <= n; i++){
-        if(i % 3 === 0 && i % 5 === 0){
-            console.log('FizzBuzz');
-        } else if(i % 3 === 0){
-            console.log('Fizz');
-        } else if(i % 5 === 0){
-            console.log('Buzz');
-        } else {
-            console.log(i);
-        }
-    }
+// function fizzBuzz(n){
+//     for(let i = 1; i <= n; i++){
+//         if(i % 3 === 0 && i % 5 === 0){
+//             console.log('FizzBuzz');
+//         } else if(i % 3 === 0){
+//             console.log('Fizz');
+//         } else if(i % 5 === 0){
+//             console.log('Buzz');
+//         } else {
+//             console.log(i);
+//         }
+//     }
+// }
+// console.log(fizzBuzz(15))  
+
+// Problem 19: Invert an Object  [Easy]
+// Description: Write a function invertObject(obj)
+//  that swaps the keys and values of an object.
+// Example:
+// Input: {a: 1, b: 2}  → Output: {1: 'a', 2: 'b'}
+// Hint: Use Object.entries() and reduce().
+function invertObject(obj){
+    const inverted = Object.entries(obj).reduce((acc, [key, value]) => {
+        acc[value] = key;
+        return acc;
+    }, {});
+    return inverted;    
 }
-console.log(fizzBuzz(15))    
+console.log(invertObject({a: 1, b: 2}))
