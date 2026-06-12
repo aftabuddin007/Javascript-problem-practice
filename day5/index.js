@@ -20,13 +20,39 @@
     // Input: 6  → Output: 8 (0,1,1,2,3,5,8...)
     // Hint: Try both iterative and recursive approaches.
 
-function fibonacci(n){
-    if (n === 0) {
-        return 0;
-    } else if (n === 1) {
-        return 1;
-    }
-    return fibonacci(n - 1) + fibonacci(n - 2);
+// function fibonacci(n){
+//     if (n === 0) {
+//         return 0;
+//     } else if (n === 1) {
+//         return 1;
+//     }
+//     return fibonacci(n - 1) + fibonacci(n - 2);
+// }
+// console.log(fibonacci(6))
+
+// Problem 23: Create a Counter with Closure  [Medium]
+// Description: Write a function makeCounter()
+//  that returns an object with increment, decrement, and getCount methods using closure.
+// Example:
+// const c = makeCounter();c.increment(); c.increment();c.getCount(); // 2
+// Hint: Use a variable inside the outer function that inner functions can access.
+function makeCounter(){
+    let count = 0;
+    return {
+        increment: function() {
+            count++;
+        },
+        decrement: function() {
+            count--;
+        },
+        getCount: function() {
+            return count;
+        }
+    };
+
+
 }
-console.log(fibonacci(6))
-    
+const c = makeCounter();
+c.increment();
+c.increment();
+console.log(c.getCount())   
