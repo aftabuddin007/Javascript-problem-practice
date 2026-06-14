@@ -81,16 +81,20 @@
 // Example:
 // const memoAdd = memoize(n => n + 10);memoAdd(5); // 15 (computed)memoAdd(5); // 15 (from cache)
 // Hint: Use an object as a cache inside the outer function.
-function memoize(fn){
-    const cache = {};
-    return function(n){
-        if (cache[n] !== undefined) {
-            return cache[n];
-        }
-        const result = fn(n);
-        cache[n] = result;
-        return result;
-    };  
-}
-const memoAdd = memoize(n => n + 10);
-console.log(memoAdd(2)) // 15 (computed)
+// function memoize(fn){
+//     const cache = {};
+//     return function(n){
+//         if (cache[n] !== undefined) {
+//             return cache[n];
+//         }
+//         const result = fn(n);
+//         cache[n] = result;
+//         return result;
+//     };  
+// }
+// const memoAdd = memoize(n => n + 10);
+// console.log(memoAdd(2)) // 15 (computed)
+
+
+
+
