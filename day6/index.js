@@ -30,15 +30,35 @@
 // Example:
 // delay(1000).then(() => { console.log('1 sec'); return delay(2000); }).then(() => console.log('3 sec total'));
 // Hint: Use new Promise with setTimeout inside.
-function delay(ms) {
-    return new Promise((resolve) => {
-        setTimeout(resolve, ms);
-    });
+// function delay(ms) {
+//     return new Promise((resolve) => {
+//         setTimeout(resolve, ms);
+//     });
 
-}
-delay(1000).then(() => {
-    console.log('1 sec');
-    return delay(2000);
-})
-.then(() => console.log('3 sec total'));    
-    
+// }
+// delay(1000).then(() => {
+//     console.log('1 sec');
+//     return delay(2000);
+// })
+// .then(() => console.log('3 sec total'));   
+
+// Problem 29: Async/Await Fetch Simulation  [Medium]
+// Description: Write an async function getUserData(id) 
+// that simulates fetching user data by awaiting a Promise that 
+// resolves after 500ms with a mock user object.
+// Example:
+// await getUserData(1);// returns {id:1, name:'Test User'}
+// Hint: Use async/await with a Promise that wraps setTimeout.
+
+// async function getUserData(id) {
+//     return await new Promise((resolve) => {
+//         setTimeout(() => {
+//             resolve({ id, name: 'Test User' });
+//         }, 500);
+//     });
+// }
+// (async () => {
+//     const userData = await getUserData(1);
+//     console.log(userData);
+// })();   
+
