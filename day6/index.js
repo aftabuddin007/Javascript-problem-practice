@@ -16,8 +16,29 @@
 // Example:
 // Input: [1,2], [3,4], [5]Output: [1,2,3,4,5]
 // Hint: Use rest parameters and spread inside reduce or flat.
-function mergeArrays(...arrays){
-    const mergeArrays = arrays.reduce((acc, curr) => [...acc, ...curr], []);
-    return mergeArrays;
+// function mergeArrays(...arrays){
+//     const mergeArrays = arrays.reduce((acc, curr) => [...acc, ...curr], []);
+//     return mergeArrays;
+// }
+// console.log(mergeArrays([1,2], [3,4,5], [5]))
+
+ 
+// Problem 28: Promise Chain  [Medium]
+// Description: Write a function delay(ms) 
+// that returns a Promise that resolves after ms milliseconds.
+//  Then chain two delays: first 1 second, then 2 seconds, logging a message after each.
+// Example:
+// delay(1000).then(() => { console.log('1 sec'); return delay(2000); }).then(() => console.log('3 sec total'));
+// Hint: Use new Promise with setTimeout inside.
+function delay(ms) {
+    return new Promise((resolve) => {
+        setTimeout(resolve, ms);
+    });
+
 }
-console.log(mergeArrays([1,2], [3,4,5], [5]))
+delay(1000).then(() => {
+    console.log('1 sec');
+    return delay(2000);
+})
+.then(() => console.log('3 sec total'));    
+    
