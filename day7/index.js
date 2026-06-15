@@ -26,18 +26,43 @@
 // Example:
 // const throttledScroll = throttle(onScroll, 200);// Fires at most once every 200ms during scroll
 // Hint: Track the last call time with Date.now().
-function throttle(fn, limit) {
-    let lastCall = 0;
-    return function(...args) {
-        const now = Date.now();
-        if (now - lastCall >= limit) {
-            lastCall = now;
-            fn.apply(this, args);
-        }
-    }
-}
-function onScroll() {
-    console.log("Scroll event fired");
-}   
+// function throttle(fn, limit) {
+//     let lastCall = 0;
+//     return function(...args) {
+//         const now = Date.now();
+//         if (now - lastCall >= limit) {
+//             lastCall = now;
+//             fn.apply(this, args);
+//         }
+//     }
+// }
+// function onScroll() {
+//     console.log("Scroll event fired");
+// }   
 
-const throttledScroll = throttle(onScroll, 200);
+// const throttledScroll = throttle(onScroll, 200);
+// Problem 33: Deep Clone an Object  [Medium]
+// Description: Write a function deepClone(obj)
+//  that returns a deep copy of a plain object without using JSON.parse/JSON.stringify.
+// Example:
+// const a = {x: {y: 1}};const b = deepClone(a);b.x.y = 99;// a.x.y is still 1
+// Hint: Use recursion and check for object/array types.
+function deepClone(obj) {
+    if (obj === null || typeof obj !== 'object') {
+        return obj; // Return primitives as is
+    } 
+    if (Array.isArray(obj)) {
+        return obj.map(deepClone); // Recursively clone array elements
+    } 
+    const clonedObj = {};
+    for (let key in obj) {
+        if (obj.hasOwnProperty(key)) {
+            clonedObj[key] = deepClone(obj[key]); 
+    }
+    return clonedObj;
+}
+}
+const a = {x: {y: 8}};
+const b = deepClone(a);
+b.x.y = 98;
+console.log(a.x.y); 
