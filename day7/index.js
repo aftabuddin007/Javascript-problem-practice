@@ -47,22 +47,60 @@
 // Example:
 // const a = {x: {y: 1}};const b = deepClone(a);b.x.y = 99;// a.x.y is still 1
 // Hint: Use recursion and check for object/array types.
-function deepClone(obj) {
-    if (obj === null || typeof obj !== 'object') {
-        return obj; // Return primitives as is
-    } 
-    if (Array.isArray(obj)) {
-        return obj.map(deepClone); // Recursively clone array elements
-    } 
-    const clonedObj = {};
-    for (let key in obj) {
-        if (obj.hasOwnProperty(key)) {
-            clonedObj[key] = deepClone(obj[key]); 
+// function deepClone(obj) {
+//     if (obj === null || typeof obj !== 'object') {
+//         return obj; // Return primitives as is
+//     } 
+//     if (Array.isArray(obj)) {
+//         return obj.map(deepClone); // Recursively clone array elements
+//     } 
+//     const clonedObj = {};
+//     for (let key in obj) {
+//         if (obj.hasOwnProperty(key)) {
+//             clonedObj[key] = deepClone(obj[key]); 
+//     }
+//     return clonedObj;
+// }
+// }
+// const a = {x: {y: 8}};
+// const b = deepClone(a);
+// b.x.y = 98;
+// console.log(a.x.y); 
+ 
+// Problem 34: Event Emitter  [Medium]
+// Description: Build a simple EventEmitter class with on(event, listener), emit(event, ...args),
+//  and off(event, listener) methods.
+// Example:
+// const emitter = new EventEmitter();emitter.on('greet', name => console.log('Hello ' + name));
+// emitter.emit('greet', 'Sara'); // Hello Sara
+// Hint: Store listeners in an object where keys are event
+//  names and values are arrays of functions.
+    class EventEmitter {
+    constructor() {
+        this.events = {};
     }
-    return clonedObj;
-}
-}
-const a = {x: {y: 8}};
-const b = deepClone(a);
-b.x.y = 98;
-console.log(a.x.y); 
+on(event, listener) {
+        if (!this.events[event]) {
+            this.events[event] = [];
+        }
+        this.events[event].push(listener);
+    }
+
+    emit(event, ...args) {
+        
+        if (this.events[event]) {
+            
+            this.events[event].forEach(listener => {
+                listener(...args);
+            });
+        }
+    }
+    off(event, listener) {
+        if (this.events[event]) {
+            this.events[event] = this.events[event].filter(l => l !== listener);
+        }
+    }
+    }
+   const emitter = new EventEmitter();
+   emitter.on('greet', name => console.log('Hello ' + name));
+emitter.emit('greet', 'Sara')
