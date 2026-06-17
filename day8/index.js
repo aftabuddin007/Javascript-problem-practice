@@ -64,31 +64,58 @@
 // Example:
 // myPromiseAll([p1, p2, p3]).then(results => console.log(results));
 // Hint: Track resolved count and results array; reject on first failure.
-function myPromiseAll(promises) {
+// function myPromiseAll(promises) {
   
-    return new Promise((resolve, reject) => {
-        const results = [];
-        let resolvedCount = 0;
-        promises.forEach((promise, index) => {
-        Promise.resolve(promise)
-        .then(value => {
-        results[index] = value;
-        resolvedCount++;
-        if (resolvedCount === promises.length) {
-        resolve(results);
+//     return new Promise((resolve, reject) => {
+//         const results = [];
+//         let resolvedCount = 0;
+//         promises.forEach((promise, index) => {
+//         Promise.resolve(promise)
+//         .then(value => {
+//         results[index] = value;
+//         resolvedCount++;
+//         if (resolvedCount === promises.length) {
+//         resolve(results);
+//         }
+
+//         })
+// .catch(error => {
+// reject(error)});
+//         });
+//     });
+// }   
+// // Example usage:
+// const p1 = Promise.resolve(1);
+// const p2 = Promise.resolve(2);
+// const p3 = Promise.resolve(3);
+// myPromiseAll([p1, p2, p3]).then(results => console.log(results)) 
+// .catch(error => console.error("Error:", error));
+
+ 
+// Problem 39: Flatten Object (Deep)  [Medium]
+// Description: Write a function flattenObject(obj)
+//  that takes a deeply nested object and returns a flat object with dot-notation keys.
+// Example:
+// Input: {a: {b: {c: 1}}}Output: {'a.b.c': 1}
+// Hint: Use recursion; build the key by joining parent keys with dots.
+
+
+function flattenObject(obj){
+    const result = {};
+    function flattenHelper(currentObj, parentKey = '') {
+        for (const key in currentObj) {
+            const newKey = parentKey ? `${parentKey}.${key}` : key;
+            if (typeof currentObj[key] === 'object' && currentObj[key] !== null) {
+                flattenHelper(currentObj[key], newKey);
+            } else {
+                result[newKey] = currentObj[key];
+            }
         }
+    }
+    flattenHelper(obj);
+    return result;
+}
 
-        })
-.catch(error => {
-reject(error)});
-        });
-    });
-}   
-// Example usage:
-const p1 = Promise.resolve(1);
-const p2 = Promise.resolve(2);
-const p3 = Promise.resolve(3);
-myPromiseAll([p1, p2, p3]).then(results => console.log(results)) 
-.catch(error => console.error("Error:", error));
-
-
+const nestedObj = {a: {b: {c: 1}}};
+flattenObject(nestedObj);
+console.log(flattenObject(nestedObj));
