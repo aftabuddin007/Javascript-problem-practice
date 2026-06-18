@@ -100,22 +100,47 @@
 // Hint: Use recursion; build the key by joining parent keys with dots.
 
 
-function flattenObject(obj){
-    const result = {};
-    function flattenHelper(currentObj, parentKey = '') {
-        for (const key in currentObj) {
-            const newKey = parentKey ? `${parentKey}.${key}` : key;
-            if (typeof currentObj[key] === 'object' && currentObj[key] !== null) {
-                flattenHelper(currentObj[key], newKey);
-            } else {
-                result[newKey] = currentObj[key];
-            }
-        }
-    }
-    flattenHelper(obj);
-    return result;
-}
+// function flattenObject(obj){
+//     const result = {};
+//     function flattenHelper(currentObj, parentKey = '') {
+//         for (const key in currentObj) {
+//             const newKey = parentKey ? `${parentKey}.${key}` : key;
+//             if (typeof currentObj[key] === 'object' && currentObj[key] !== null) {
+//                 flattenHelper(currentObj[key], newKey);
+//             } else {
+//                 result[newKey] = currentObj[key];
+//             }
+//         }
+//     }
+//     flattenHelper(obj);
+//     return result;
+// }
 
-const nestedObj = {a: {b: {c: 1}}};
-flattenObject(nestedObj);
-console.log(flattenObject(nestedObj));
+// const nestedObj = {a: {b: {c: 1}}};
+// flattenObject(nestedObj);
+// console.log(flattenObject(nestedObj));
+
+// Problem 40: Group Array by Property  [Medium]
+// Description: Write a function groupBy(arr, key)
+//  that groups an array of objects by a given property key.
+// Example:
+// groupBy([{type:'fruit',name:'apple'},{type:'veg',name:'carrot'},
+//     {type:'fruit',name:'mango'}], 'type')// {fruit: [...], veg: [...]}
+// Hint: Use reduce() and build an object where each key maps to an array.
+function groupBy(arr, key){
+    return arr.reduce((acc, obj) => {
+        const groupKey = obj[key];
+        if (!acc[groupKey]) {
+            acc[groupKey] = [];
+        }
+        acc[groupKey].push(obj);
+        return acc;
+    }, {});
+
+}
+const items = [
+    {type:'fruit',name:'apple'},
+    {type:'veg',name:'carrot'},
+    {type:'fruit',name:'mango'}
+];
+console.log(groupBy(items,"type"));    
