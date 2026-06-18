@@ -5,16 +5,28 @@
 // Example:
 // Input: [2, 7, 11, 15], target = 9Output: [0, 1]  (because 2 + 7 = 9)
 // Hint: Use a hash map to store visited values and their indices.
-function twoSum(arr, target){
-    const map={}
-    for(let i=0;i<arr.length;i++){
-        const complement=target-arr[i]
-        if(map[complement]!==undefined){
-            return [map[complement],i]
-        }        map[arr[i]]=i
-    }
+// function twoSum(arr, target){
+//     const map={}
+//     for(let i=0;i<arr.length;i++){
+//         const complement=target-arr[i]
+//         if(map[complement]!==undefined){
+//             return [map[complement],i]
+//         }        map[arr[i]]=i
+//     }
 
+// }
+// const arr=[2,7,11,15]
+// const target=13
+// console.log(twoSum(arr,target)) 
+ 
+// Problem 42: Check Anagram  [Easy]
+// Description: Write a function isAnagram(str1, str2)
+//  that returns true if the two strings are anagrams of each other.
+// Example:
+// Input: 'listen', 'silent'  → Output: trueInput: 'hello', 'world'   → Output: false
+// Hint: Sort both strings and compare, or use a character frequency map.
+function isAnagram(str1, str2){
+    const normalize = str => str.toLowerCase().replace(/[^a-z]/g, '').split('').sort().join('');
+    return normalize(str1) === normalize(str2);
 }
-const arr=[2,7,11,15]
-const target=13
-console.log(twoSum(arr,target)) 
+console.log(isAnagram("hello","world"))
