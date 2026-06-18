@@ -25,8 +25,24 @@
 // Example:
 // Input: 'listen', 'silent'  → Output: trueInput: 'hello', 'world'   → Output: false
 // Hint: Sort both strings and compare, or use a character frequency map.
-function isAnagram(str1, str2){
-    const normalize = str => str.toLowerCase().replace(/[^a-z]/g, '').split('').sort().join('');
-    return normalize(str1) === normalize(str2);
+// function isAnagram(str1, str2){
+//     const normalize = str => str.toLowerCase().replace(/[^a-z]/g, '').split('').sort().join('');
+//     return normalize(str1) === normalize(str2);
+// }
+// console.log(isAnagram("hello","world"))
+
+ 
+// Problem 43: Find Missing Number  [Easy]
+// Description: Given an array of n-1 integers from 1 to n
+//  with one number missing, write a function findMissing(arr, n) to find the missing number.
+// Example:
+// Input: [1,2,4,5], n=5  → Output: 3
+// Hint: Use the formula: expected sum = n*(n+1)/2, then subtract actual sum.
+function findMissing(arr, n){
+    const expectedSum = (n * (n + 1)) / 2;
+    const actualSum = arr.reduce((sum, num) => sum + num, 0);
+    return expectedSum - actualSum; 
 }
-console.log(isAnagram("hello","world"))
+    const arr=[1,2,4,5]
+    const n=5
+    console.log(findMissing(arr,n))
