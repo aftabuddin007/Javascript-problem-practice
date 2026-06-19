@@ -25,18 +25,31 @@
 // Example:
 // Input: 'The quick brown fox'Output: 'quick'
 // Hint: Split the sentence and use reduce() to track the longest.
-function longestWord(sentence) {
-    const words = sentence.split(' ');
-    let longest = '';
-    for (const word of words) {
-        if (word.length > longest.length) {
-            longest = word;
-        }else{
-            longest = longest;
+// function longestWord(sentence) {
+//     const words = sentence.split(' ');
+//     let longest = '';
+//     for (const word of words) {
+//         if (word.length > longest.length) {
+//             longest = word;
+//         }else{
+//             longest = longest;
 
-        }
-    }    return longest;
+//         }
+//     }    return longest;
+
+// }
+
+// console.log(longestWord('The  brown fox jumpst over the lazy dog'));
+// Problem 48: Rotate an Array  [Medium]
+// Description: Write a function rotateArray(arr, k) 
+// that rotates an array to the right by k steps.
+// Example:
+// Input: [1,2,3,4,5], k=2Output: [4,5,1,2,3]
+// Hint: Use slice and concat, or reverse the whole array then parts.
+function rotateArray(arr, k){
+    const n = arr.length;
+    k = k % n;
+    return arr.slice(-k).concat(arr.slice(0, n - k));
 
 }
-
-console.log(longestWord('The  brown fox jumpst over the lazy dog'));
+console.log(rotateArray([1,2,3,4,5], 2));
