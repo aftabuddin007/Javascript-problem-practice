@@ -38,11 +38,34 @@
 // Example:
 // Input: [1,2,4,5], n=5  → Output: 3
 // Hint: Use the formula: expected sum = n*(n+1)/2, then subtract actual sum.
-function findMissing(arr, n){
-    const expectedSum = (n * (n + 1)) / 2;
-    const actualSum = arr.reduce((sum, num) => sum + num, 0);
-    return expectedSum - actualSum; 
+// function findMissing(arr, n){
+//     const expectedSum = (n * (n + 1)) / 2;
+//     const actualSum = arr.reduce((sum, num) => sum + num, 0);
+//     return expectedSum - actualSum; 
+// }
+//     const arr=[1,2,4,5]
+//     const n=5
+//     console.log(findMissing(arr,n))
+
+// Problem 44: Valid Parentheses  [Medium]
+// Description: Write a function isValidParentheses(str)
+//  that returns true if the string has valid, balanced parentheses, brackets, and braces.
+// Example:
+// Input: '()[]{}'  → Output: trueInput: '([)]'    → Output: false
+// Hint: Use a stack (array). Push opening brackets, pop and compare for closing ones.
+function isValidParentheses(str){
+    const stack = [];
+    const pairs = { ')': '(', ']': '[', '}': '{' };
+    for (let char of str) {
+        if (['(', '[', '{'].includes(char)) {
+            stack.push(char);
+        } else if ([')', ']', '}'].includes(char)) {
+            if (stack.pop() !== pairs[char]) {
+                return false;
+            }
+        }
+    }
+    return stack.length === 0;
+
 }
-    const arr=[1,2,4,5]
-    const n=5
-    console.log(findMissing(arr,n))
+console.log(isValidParentheses("()[)}[]"))
