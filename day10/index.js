@@ -61,22 +61,38 @@
 // Hint: Map each symbol to its value; if 
 // a smaller value comes before a larger one, subtract it.
 
-function romanToInt(s){
-    const romanMap = {
-    'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000};
-    let total = 0;
-    for (let i = 0; i < s.length; i++) {
-        const currentVal = romanMap[s[i]];
-        const nextVal = romanMap[s[i + 1]];
-        if (nextVal && currentVal < nextVal) {
-            total -= currentVal;
-        }else {
-            total += currentVal;
-        }
-    }
-    return total;
+// function romanToInt(s){
+//     const romanMap = {
+//     'I': 1, 'V': 5, 'X': 10, 'L': 50, 'C': 100, 'D': 500, 'M': 1000};
+//     let total = 0;
+//     for (let i = 0; i < s.length; i++) {
+//         const currentVal = romanMap[s[i]];
+//         const nextVal = romanMap[s[i + 1]];
+//         if (nextVal && currentVal < nextVal) {
+//             total -= currentVal;
+//         }else {
+//             total += currentVal;
+//         }
+//     }
+//     return total;
     
 
 
+// }
+// console.log(romanToInt("LVIII"));
+
+// Problem 50: Pascal's Triangle Row  [Medium]
+// Description: Write a function pascalRow(n) 
+// that returns the nth row of Pascal's Triangle as an array.
+// Example:
+// Input: 0  → Output: [1]Input: 3  → Output: [1,3,3,1]Input: 4  → Output: [1,4,6,4,1]
+// Hint: Each element is the sum of the two elements above it from the previous row.
+function pascalRow(n) {
+    const row = [1];
+    for (let k = 1; k <= n; k++) {
+        row[k] = row[k - 1] * (n - k + 1) / k;
+    }
+    return row;
+
 }
-console.log(romanToInt("LVIII"));
+console.log(pascalRow(4));
