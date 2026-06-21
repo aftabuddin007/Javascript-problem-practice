@@ -33,30 +33,50 @@
 // Example:
 // Input: [[1,3], [2,6], [8,10], [15,18]] → Output: [[1,6], [8,10], [15,18]]
 // Hint: Sort the intervals by their start time, then iterate and compare the current interval's start with the previous interval's end.
-function mergeIntervals(intervals) {
-    if (intervals.length === 0) return [];
-    intervals.sort((a, b) => a[0] - b[0]);
-    const merged = [intervals[0]];  
-    for (let i = 1; i < intervals.length; i++) {
-        const lastMerged = merged[merged.length - 1];
-        const current = intervals[i];
-        if (current[0] <= lastMerged[1]) {
-            lastMerged[1] = Math.max(lastMerged[1], current[1]);
-        }
-        else {
-            merged.push(current);
-        }
-    }
-    return merged;
+// function mergeIntervals(intervals) {
+//     if (intervals.length === 0) return [];
+//     intervals.sort((a, b) => a[0] - b[0]);
+//     const merged = [intervals[0]];  
+//     for (let i = 1; i < intervals.length; i++) {
+//         const lastMerged = merged[merged.length - 1];
+//         const current = intervals[i];
+//         if (current[0] <= lastMerged[1]) {
+//             lastMerged[1] = Math.max(lastMerged[1], current[1]);
+//         }
+//         else {
+//             merged.push(current);
+//         }
+//     }
+//     return merged;
 
-}
-const input = [[1,3], [2,6], [8,10], [15,18]];
-console.log(mergeIntervals(input));
+// }
+// const input = [[1,3], [2,6], [8,10], [15,18]];
+// console.log(mergeIntervals(input));
 
 
 // Problem 53: Implement Debounce  [Medium]
 // Description: Write a custom debounce function debounce(func, delay) 
-//  that delays the execution of func until after delay milliseconds have elapsed since the last time it was invoked.
+//  that delays the execution of func until after delay milliseconds
+//  have elapsed since the last time it was invoked.
 // Example: 
 // const efficientSearch = debounce(searchAPI, 500);
-// Hint: Use closures and timers (setTimeout and clearTimeout). Clear the old timer every time the function is called again.
+// Hint: Use closures and timers (setTimeout and clearTimeout). Clear
+//  the old timer every time the function is called again.
+
+function debounce(func, delay) {
+    let timeoutId;
+    return function(...args) {
+        clearTimeout(timeoutId);
+        timeoutId = setTimeout(() => {
+            func.apply(this, args);
+        }
+        , delay);
+    };
+}
+
+function searchAPI(query) {
+    console.log(`Searching for: ${query}`);
+}
+const efficientSearch = debounce(searchAPI, 500);
+
+efficientSearch("Hello, World!");
