@@ -87,25 +87,25 @@
 // Example:
 // Input: 'javascript' → Output: 'a'  (because 'a' appears 2 times, others appear 1 time)
 // Hint: Use a frequency map (object) to count each character, then loop through the object to find the maximum value.
-function maxFrequencyChar(str){
-    const frequencyMap = {};
-    for (const char of str) {
-        frequencyMap[char] = (frequencyMap[char] || 0) + 1;
-    }
-    let maxChar = null;
-    let maxFreq = 0;
-    for (const char in frequencyMap) {
-        if (frequencyMap[char] > maxFreq) {
-            maxFreq = frequencyMap[char];
-            maxChar = char;
-        }
-    }
-    return maxChar;
-}
+// function maxFrequencyChar(str){
+//     const frequencyMap = {};
+//     for (const char of str) {
+//         frequencyMap[char] = (frequencyMap[char] || 0) + 1;
+//     }
+//     let maxChar = null;
+//     let maxFreq = 0;
+//     for (const char in frequencyMap) {
+//         if (frequencyMap[char] > maxFreq) {
+//             maxFreq = frequencyMap[char];
+//             maxChar = char;
+//         }
+//     }
+//     return maxChar;
+// }
 
 
-const input = 'Welcome';
-console.log(maxFrequencyChar(input));
+// const input = 'Welcome';
+// console.log(maxFrequencyChar(input));
 
 
 
@@ -114,4 +114,13 @@ console.log(maxFrequencyChar(input));
 //  n is a power of two (i.e., n = 2^x where x is an integer). Otherwise, return false.
 // Example:
 // Input: 16 → Output: true | Input: 14 → Output: false
-// Hint: A number greater than 0 is a power of two if you keep dividing it by 2 and always get a remainder of 0 until it reaches 1. Alternatively, use bitwise operation: (n & (n - 1)) === 0.
+// Hint: A number greater than 0 is a power of two if you keep dividing it by 2 and always get a 
+// remainder of 0 until it reaches 1. Alternatively, use bitwise operation: (n & (n - 1)) === 0.
+function isPowerOfTwo(n){
+    if (n <= 0) return false;
+    return (n & (n - 1)) === 0;
+
+}
+const input = 78;
+
+console.log(isPowerOfTwo(input));
