@@ -63,20 +63,55 @@
 // Hint: Use closures and timers (setTimeout and clearTimeout). Clear
 //  the old timer every time the function is called again.
 
-function debounce(func, delay) {
-    let timeoutId;
-    return function(...args) {
-        clearTimeout(timeoutId);
-        timeoutId = setTimeout(() => {
-            func.apply(this, args);
+// function debounce(func, delay) {
+//     let timeoutId;
+//     return function(...args) {
+//         clearTimeout(timeoutId);
+//         timeoutId = setTimeout(() => {
+//             func.apply(this, args);
+//         }
+//         , delay);
+//     };
+// }
+
+// function searchAPI(query) {
+//     console.log(`Searching for: ${query}`);
+// }
+// const efficientSearch = debounce(searchAPI, 500);
+
+// efficientSearch("Hello, World!");
+
+// Problem 54: Find the Highest Frequency Character  [Easy]
+// Description: Write a function maxFrequencyChar(str) that returns the character 
+//  that appears the most number of times in a given string. If there is a tie, return any.
+// Example:
+// Input: 'javascript' → Output: 'a'  (because 'a' appears 2 times, others appear 1 time)
+// Hint: Use a frequency map (object) to count each character, then loop through the object to find the maximum value.
+function maxFrequencyChar(str){
+    const frequencyMap = {};
+    for (const char of str) {
+        frequencyMap[char] = (frequencyMap[char] || 0) + 1;
+    }
+    let maxChar = null;
+    let maxFreq = 0;
+    for (const char in frequencyMap) {
+        if (frequencyMap[char] > maxFreq) {
+            maxFreq = frequencyMap[char];
+            maxChar = char;
         }
-        , delay);
-    };
+    }
+    return maxChar;
 }
 
-function searchAPI(query) {
-    console.log(`Searching for: ${query}`);
-}
-const efficientSearch = debounce(searchAPI, 500);
 
-efficientSearch("Hello, World!");
+const input = 'Welcome';
+console.log(maxFrequencyChar(input));
+
+
+
+// Problem 55: Check Power of Two  [Easy]
+// Description: Write a function isPowerOfTwo(n) that returns true if the given integer 
+//  n is a power of two (i.e., n = 2^x where x is an integer). Otherwise, return false.
+// Example:
+// Input: 16 → Output: true | Input: 14 → Output: false
+// Hint: A number greater than 0 is a power of two if you keep dividing it by 2 and always get a remainder of 0 until it reaches 1. Alternatively, use bitwise operation: (n & (n - 1)) === 0.
