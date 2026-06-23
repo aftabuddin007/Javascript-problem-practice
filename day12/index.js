@@ -24,21 +24,21 @@
 // Input: [0, 1, 0, 3, 12] → Output: [1, 3, 12, 0, 0]
 // Hint: Keep track of a pointer for the position of the next non-zero element.
 //  Loop through the array, and whenever you see a non-zero element, swap it with the element at the pointer, then move the pointer forward.
-function moveZeroes(nums){
-    let nonZeroIndex = 0; 
-    for (let i = 0; i < nums.length; i++) {
-        if (nums[i] !== 0) {
+// function moveZeroes(nums){
+//     let nonZeroIndex = 0; 
+//     for (let i = 0; i < nums.length; i++) {
+//         if (nums[i] !== 0) {
             
-            [nums[nonZeroIndex], nums[i]] = [nums[i], nums[nonZeroIndex]];
-            nonZeroIndex++; 
-        }
-    }
+//             [nums[nonZeroIndex], nums[i]] = [nums[i], nums[nonZeroIndex]];
+//             nonZeroIndex++; 
+//         }
+//     }
 
-    return nums;
+//     return nums;
 
-}
-const nums = [0, 1, 0, 3, 12];
-console.log(moveZeroes(nums));
+// }
+// const nums = [0, 1, 0, 3, 12];
+// console.log(moveZeroes(nums));
 
 // Problem 58: Valid Perfect Square  [Easy]
 // Description: Given a positive integer n, write a function isPerfectSquare(n) that returns 
@@ -48,3 +48,24 @@ console.log(moveZeroes(nums));
 // Input: 16 → Output: true | Input: 14 → Output: false
 // Hint: You can use Binary Search! Set left = 1 and right = n. Find the
 //  middle element, calculate mid * mid, and compare it with n. Repeat until found or pointers cross.
+function isPerfectSquare(n){
+    if (n < 2) return true;
+    let left = 1; 
+    right = n;    
+    while (left <= right) {
+        const mid = Math.floor((left + right) / 2);
+        const square = mid * mid;
+        if (square === n) 
+            return true;
+        if (square < n) {
+            left = mid + 1;
+        }
+        else {
+            right = mid - 1;
+        }
+    }
+    return false;
+
+}
+const input = 66;
+console.log(isPerfectSquare(input))
