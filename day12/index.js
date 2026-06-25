@@ -80,19 +80,41 @@
 //  (If we choose scores [9, 7], the difference is 9 - 7 = 2, which is the minimum possible difference)
 // Hint: First, sort the array in ascending order. Then, use a sliding window of size k. The difference for 
 // any window starting at index i will be nums[i + k - 1] - nums[i]. Find the minimum of all such differences.
-function minimumDifference(nums, k){
-    const n = nums.length;
-    if (k <= 1 || n < k) return 0; 
-    nums.sort((a, b) => a - b); 
-    let minDiff = Infinity;
+// function minimumDifference(nums, k){
+//     const n = nums.length;
+//     if (k <= 1 || n < k) return 0; 
+//     nums.sort((a, b) => a - b); 
+//     let minDiff = Infinity;
 
-    for (let i = 0; i <= n - k; i++) {
-        const diff = nums[i + k - 1] - nums[i];
-        minDiff = Math.min(minDiff, diff);
+//     for (let i = 0; i <= n - k; i++) {
+//         const diff = nums[i + k - 1] - nums[i];
+//         minDiff = Math.min(minDiff, diff);
+//     }
+//     return minDiff;
+
+// }
+// const nums = [9, 4, 1, 7];
+// const k = 3;
+// console.log(minimumDifference(nums, k));
+
+// Problem 60: Unique Number of Occurrences  [Easy]
+// Description: Given an array of integers arr, write a function uniqueOccurrences(arr) 
+//  that returns true if the number of occurrences of each value in the array is unique, or false otherwise.
+// Example:
+// Input: [1, 2, 2, 1, 1, 3] → Output: true 
+//  (because 1 appears 3 times, 2 appears 2 times, and 3 appears 1 time. All frequencies [3, 2, 1] are unique)
+// Input: [1, 2] → Output: false (both appear 1 time, so frequencies are not unique)
+// Hint: First, use a Map or Object to count the frequency of each number. Then, take all the frequency values 
+// and put them into a Set. If the size of the Set is equal to the number of unique frequencies, return true.
+ function uniqueOccurrences(arr) {
+    const frequencyMap = new Map();
+    for (const num of arr) {
+        frequencyMap.set(num, (frequencyMap.get(num) || 0) + 1);
     }
-    return minDiff;
+    if (frequencyMap.size === 0) return true; 
+    const frequencySet = new Set(frequencyMap.values());
+    return frequencySet.size === frequencyMap.size;
 
-}
-const nums = [9, 4, 1, 7];
-const k = 3;
-console.log(minimumDifference(nums, k));
+ }
+ const arr = [1, 2, 2, 1, 1, 3];
+ console.log(uniqueOccurrences(arr));
