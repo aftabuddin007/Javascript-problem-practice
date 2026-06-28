@@ -28,20 +28,42 @@
 // (i.e., nums[i+1] !== nums[i] + 1), it means the current range ends. Form the string ("start->end" or just "start") 
 // and push it to the result, then update the start for the next range.
 
-function summaryRanges(nums) {
-    const result = [];
-    let start = nums[0];
-    for (let i = 0; i < nums.length; i++) {
-        if (i === nums.length - 1 || nums[i + 1] !== nums[i] + 1) {
-            if (start === nums[i]) {
-                result.push(`${start}`);
-            } else {
-                result.push(`${start}->${nums[i]}`);
-            }
-            start = nums[i + 1];
-        }
+// function summaryRanges(nums) {
+//     const result = [];
+//     let start = nums[0];
+//     for (let i = 0; i < nums.length; i++) {
+//         if (i === nums.length - 1 || nums[i + 1] !== nums[i] + 1) {
+//             if (start === nums[i]) {
+//                 result.push(`${start}`);
+//             } else {
+//                 result.push(`${start}->${nums[i]}`);
+//             }
+//             start = nums[i + 1];
+//         }
+//     }
+//     return result;
+
+// }
+// console.log(summaryRanges([0, 1, 2, 4, 5, 7]));
+
+// Problem 63: Find the Difference of Two Arrays  [Easy]
+// Description: Given two 0-indexed integer arrays nums1 and nums2, write a function 
+//  findDifference(nums1, nums2) that returns a list answer of size 2 where:
+//  answer[0] is a list of all distinct integers in nums1 which are not present in nums2.
+//  answer[1] is a list of all distinct integers in nums2 which are not present in nums1.
+// Example:
+// Input: nums1 = [1,2,3], nums2 = [2,4,6] → Output: [[1,3], [4,6]]
+// Hint: Convert both arrays into Sets to remove duplicates and allow fast lookups. Then,
+//  filter Set 1 to find elements missing in Set 2, and vice versa. Convert the results back to arrays.
+function findDifference(nums1, nums2){
+    const set1 = new Set(nums1);
+    const set2 = new Set(nums2);
+    const diff1 = [...set1].filter(num => !set2.has(num));
+    const diff2 = [...set2].filter(num => !set1.has(num));
+    return [diff1, diff2];
+    if (nums1.length === 0 && nums2.length === 0) {
+        return [[], []];
     }
-    return result;
 
 }
-console.log(summaryRanges([0, 1, 2, 4, 5, 7]));
+console.log(findDifference([1,2,3], [2,4,6]));
