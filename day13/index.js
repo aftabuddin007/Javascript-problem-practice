@@ -55,15 +55,40 @@
 // Input: nums1 = [1,2,3], nums2 = [2,4,6] → Output: [[1,3], [4,6]]
 // Hint: Convert both arrays into Sets to remove duplicates and allow fast lookups. Then,
 //  filter Set 1 to find elements missing in Set 2, and vice versa. Convert the results back to arrays.
-function findDifference(nums1, nums2){
-    const set1 = new Set(nums1);
-    const set2 = new Set(nums2);
-    const diff1 = [...set1].filter(num => !set2.has(num));
-    const diff2 = [...set2].filter(num => !set1.has(num));
-    return [diff1, diff2];
-    if (nums1.length === 0 && nums2.length === 0) {
-        return [[], []];
+// function findDifference(nums1, nums2){
+//     const set1 = new Set(nums1);
+//     const set2 = new Set(nums2);
+//     const diff1 = [...set1].filter(num => !set2.has(num));
+//     const diff2 = [...set2].filter(num => !set1.has(num));
+//     return [diff1, diff2];
+//     if (nums1.length === 0 && nums2.length === 0) {
+//         return [[], []];
+//     }
+
+// }
+// console.log(findDifference([1,2,3], [2,4,6]));
+
+// Problem 64: Merge Strings Alternately  [Easy]
+// Description: You are given two strings word1 and word2. Write a function mergeAlternately(word1, word2) 
+//  that merges the strings by adding letters in alternating order, starting with word1. 
+//  If a string is longer than the other, append the additional letters onto the end of the merged string.
+// Example:
+// Input: word1 = "abc", word2 = "pqr" → Output: "apbqcr"
+// Input: word1 = "ab", word2 = "rs_tu" → Output: "arbs_tu"
+// Hint: Use a single loop that runs up to the maximum length of both strings. Inside the loop, append the 
+// character from word1 (if it exists) and then from word2 (if it exists) to a result string.
+function mergeAlternately(word1, word2){
+    let merged = '';
+    const maxLength = Math.max(word1.length, word2.length);
+    for (let i = 0; i < maxLength; i++) {
+        if (i < word1.length) {
+            merged += word1[i];
+        }
+        if (i < word2.length) {
+            merged += word2[i];
+        }
     }
+    return merged;  
 
 }
-console.log(findDifference([1,2,3], [2,4,6]));
+console.log(mergeAlternately("abc", "pqr"));
