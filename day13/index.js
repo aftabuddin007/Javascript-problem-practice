@@ -77,18 +77,43 @@
 // Input: word1 = "ab", word2 = "rs_tu" → Output: "arbs_tu"
 // Hint: Use a single loop that runs up to the maximum length of both strings. Inside the loop, append the 
 // character from word1 (if it exists) and then from word2 (if it exists) to a result string.
-function mergeAlternately(word1, word2){
-    let merged = '';
-    const maxLength = Math.max(word1.length, word2.length);
-    for (let i = 0; i < maxLength; i++) {
-        if (i < word1.length) {
-            merged += word1[i];
-        }
-        if (i < word2.length) {
-            merged += word2[i];
+// function mergeAlternately(word1, word2){
+//     let merged = '';
+//     const maxLength = Math.max(word1.length, word2.length);
+//     for (let i = 0; i < maxLength; i++) {
+//         if (i < word1.length) {
+//             merged += word1[i];
+//         }
+//         if (i < word2.length) {
+//             merged += word2[i];
+//         }
+//     }
+//     return merged;  
+
+// }
+// console.log(mergeAlternately("abc", "pqr"));
+
+// Problem 65: Keyboard Row  [Easy]
+// Description: Given an array of strings words, write a function findWords(words) that returns 
+//  the words that can be typed using letters of only one row of American keyboard.
+//  Row 1: "qwertyuiop", Row 2: "asdfghjkl", Row 3: "zxcvbnm"
+// Example:
+// Input: ["Hello", "Alaska", "Dad", "Peace"] → Output: ["Alaska", "Dad"]
+// Hint: Define three sets or strings representing the keyboard rows. Loop through each word,
+//  convert it to lower
+function findWords(words){
+    const row1 = new Set('qwertyuiop');
+    const row2 = new Set('asdfghjkl');
+    const row3 = new Set('zxcvbnm');
+    const result = [];
+    for (const word of words) {
+        const lowerWord = word.toLowerCase();
+        if ([...lowerWord].every(char => row1.has(char)) ||
+            [...lowerWord].every(char => row2.has(char)) ||
+            [...lowerWord].every(char => row3.has(char))) {
+            result.push(word);
         }
     }
-    return merged;  
-
+    return result;
 }
-console.log(mergeAlternately("abc", "pqr"));
+console.log(findWords(["Hello", "Alaska", "Dad", "Peace"]));
