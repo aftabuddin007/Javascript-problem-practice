@@ -101,19 +101,19 @@
 // Input: ["Hello", "Alaska", "Dad", "Peace"] → Output: ["Alaska", "Dad"]
 // Hint: Define three sets or strings representing the keyboard rows. Loop through each word,
 //  convert it to lower
-function findWords(words){
-    const row1 = new Set('qwertyuiop');
-    const row2 = new Set('asdfghjkl');
-    const row3 = new Set('zxcvbnm');
-    const result = [];
-    for (const word of words) {
-        const lowerWord = word.toLowerCase();
-        if ([...lowerWord].every(char => row1.has(char)) ||
-            [...lowerWord].every(char => row2.has(char)) ||
-            [...lowerWord].every(char => row3.has(char))) {
-            result.push(word);
-        }
-    }
-    return result;
-}
-console.log(findWords(["Hello", "Alaska", "Dad", "Peace"]));
+// function findWords(words){
+//     const row1 = new Set('qwertyuiop');
+//     const row2 = new Set('asdfghjkl');
+//     const row3 = new Set('zxcvbnm');
+//     const result = [];
+//     for (const word of words) {
+//         const lowerWord = word.toLowerCase();
+//         if ([...lowerWord].every(char => row1.has(char)) ||
+//             [...lowerWord].every(char => row2.has(char)) ||
+//             [...lowerWord].every(char => row3.has(char))) {
+//             result.push(word);
+//         }
+//     }
+//     return result;
+// }
+// console.log(findWords(["Hello", "Alaska", "Dad", "Peace"]));
