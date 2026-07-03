@@ -33,19 +33,45 @@
 //  (She has 6 candies and can eat 6 / 2 = 3 candies. There are 3 unique types [1, 2, 3], so she can eat all unique types)
 // Hint: Find the number of unique candy types using a Set. The maximum unique candies she can eat will be the minimum
 //  value between the total unique types and the allowed limit (candyType.length / 2). Use Math.min().
-function distributeCandies(candyType) {
-    const uniqueCandies = new Set(candyType);
-    const maxCandies = candyType.length / 2;
-    return Math.min(uniqueCandies.size, maxCandies);
-    for (let i = 0; i < candyType.length; i++) {
-        if (candyType.length === 0) {
-            return 0;
-        }   
-        else {
-            return 1;
+// function distributeCandies(candyType) {
+//     const uniqueCandies = new Set(candyType);
+//     const maxCandies = candyType.length / 2;
+//     return Math.min(uniqueCandies.size, maxCandies);
+//     for (let i = 0; i < candyType.length; i++) {
+//         if (candyType.length === 0) {
+//             return 0;
+//         }   
+//         else {
+//             return 1;
+//         }
+
+//     }
+
+// }
+// console.log(distributeCandies([1, 1, 2, 2, 3, 3]));
+
+// Problem 68: Find Pivot Index  [Easy]
+// Description: Given an array of integers nums, write a function pivotIndex(nums) that returns 
+//  the pivot index of this array. The pivot index is the index where the sum of all the numbers 
+//  strictly to the left of the index is equal to the sum of all the numbers strictly to the index's right. 
+//  If no such index exists, return -1.
+// Example:
+// Input: [1, 7, 3, 6, 5, 6] → Output: 3 
+//  (The pivot index is 3. Left sum = 1 + 7 + 3 = 11. Right sum = 5 + 6 = 11)
+// Hint: First, calculate the total sum of the entire array. Keep track of 
+// a running `leftSum` initialized to 0. Loop through the array, and for each element, 
+// calculate the `rightSum` as (totalSum - leftSum - nums[i]).
+//  If `leftSum === rightSum`, return the current index. Otherwise, add the current element to `leftSum` and continue.
+function pivotIndex(nums){
+    const totalSum = nums.reduce((acc, num) => acc + num, 0);
+    let leftSum = 0;
+        for (let i = 0; i < nums.length; i++) {
+            const rightSum = totalSum - leftSum - nums[i];
+            if (leftSum === rightSum) {
+                return i;
+            }
+            leftSum += nums[i];
         }
-
-    }
-
+    return -1;
 }
-console.log(distributeCandies([1, 1, 2, 2, 3, 3]));
+console.log(pivotIndex([1, 7, 3, 6, 5, 6]));
