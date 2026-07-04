@@ -62,16 +62,58 @@
 // a running `leftSum` initialized to 0. Loop through the array, and for each element, 
 // calculate the `rightSum` as (totalSum - leftSum - nums[i]).
 //  If `leftSum === rightSum`, return the current index. Otherwise, add the current element to `leftSum` and continue.
-function pivotIndex(nums){
-    const totalSum = nums.reduce((acc, num) => acc + num, 0);
-    let leftSum = 0;
-        for (let i = 0; i < nums.length; i++) {
-            const rightSum = totalSum - leftSum - nums[i];
-            if (leftSum === rightSum) {
-                return i;
-            }
-            leftSum += nums[i];
+// function pivotIndex(nums){
+//     const totalSum = nums.reduce((acc, num) => acc + num, 0);
+//     let leftSum = 0;
+//         for (let i = 0; i < nums.length; i++) {
+//             const rightSum = totalSum - leftSum - nums[i];
+//             if (leftSum === rightSum) {
+//                 return i;
+//             }
+//             leftSum += nums[i];
+//         }
+//     return -1;
+// }
+// console.log(pivotIndex([1, 7, 3, 6, 5, 6]));
+
+// Problem 69: Valid Palindrome II  [Easy]
+// Description: Given a string s, write a function validPalindrome(s) that returns true 
+//  if the s can be palindrome after deleting at most one character from it, else false.
+// Example:
+// Input: "aba" → Output: true
+// Input: "abca" → Output: true (You can delete the character 'c' to get "aba", which is a palindrome)
+// Input: "abc" → Output: false
+// Hint: Use the standard two-pointer approach (left and right). If the characters at left and 
+// right match, move them inward. If they don't match,
+//  check if the remaining substring becomes a palindrome by either skipping the left character 
+// or the right character.
+function validPalindrome(s) {
+    const isPalindrome = (left, right) => {
+        while (left < right) {
+            if (s[left] !== s[right])
+                 return false;
+            left++;
+            right--;
         }
-    return -1;
+        return true;
+    };
+
+    let left = 0;
+    let right = s.length - 1;
+
+    while (left < right) {
+        if (s[left] !== s[right]) {
+            return (
+                isPalindrome(left + 1, right) ||
+                isPalindrome(left, right - 1)
+            );
+        }
+        left++;
+        right--;
+    }
+
+    return true;
 }
-console.log(pivotIndex([1, 7, 3, 6, 5, 6]));
+console.log(validPalindrome("aba")); 
+console.log(validPalindrome("abca")); 
+console.log(validPalindrome("abc")); 
