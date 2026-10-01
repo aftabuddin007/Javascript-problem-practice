@@ -89,79 +89,66 @@
 // next() delegates execution to the subsequent middleware in the stack.
 
 // Throw an error if next() is invoked multiple times within a single middleware.
-function compose(middleware) {
-  // 1. Validation: ensure middleware is an array of functions
-  if (!Array.isArray(middleware)) {
-    throw new TypeError('Middleware stack must be an array!');
-  }
-  for (const fn of middleware) {
-    if (typeof fn !== 'function') {
-      throw new TypeError('Middleware must be composed of functions!');
-    }
-  }
+// function compose(middleware) {
+//   if (!Array.isArray(middleware)) {
+//     throw new TypeError('Middleware stack must be an array!');
+//   }
+//   for (const fn of middleware) {
+//     if (typeof fn !== 'function') {
+//       throw new TypeError('Middleware must be composed of functions!');
+//     }
+//   }
 
-  return function (context, next) {
-    // Last called middleware index to track multiple next() calls
-    let index = -1;
+//   return function (context, next) {
+//     let index = -1;
     
-    return dispatch(0);
+//     return dispatch(0);
 
-    function dispatch(i) {
-      // 2. Prevent calling next() multiple times within the same middleware
-      if (i <= index) {
-        return Promise.reject(new Error('next() called multiple times'));
-      }
+//     function dispatch(i) {
+//       if (i <= index) {
+//         return Promise.reject(new Error('next() called multiple times'));
+//       }
       
-      index = i;
-      let fn = middleware[i];
+//       index = i;
+//       let fn = middleware[i];
       
-      // If we've reached the end of the middleware stack, resolve the optional baseline next function
-      if (i === middleware.length) {
-        fn = next;
-      }
+//       if (i === middleware.length) {
+//         fn = next;
+//       }
 
-      // If no more middleware or baseline next function exists, resolve successfully
-      if (!fn) {
-        return Promise.resolve();
-      }
+//       if (!fn) {
+//         return Promise.resolve();
+//       }
 
-      try {
-        // 3. Execute the current middleware, passing the context and the bound next dispatch function
-        return Promise.resolve(fn(context, dispatch.bind(null, i + 1)));
-      } catch (err) {
-        return Promise.reject(err);
-      }
-    }
-  };
-}
-Example Usage & "Onion Model" Demonstration
-Here is how you can use the composed middleware to see the classic Koa onion-skin execution flow (executing code before and after await next()):
+//       try {
+//         return Promise.resolve(fn(context, dispatch.bind(null, i + 1)));
+//       } catch (err) {
+//         return Promise.reject(err);
+//       }
+//     }
+//   };
+// }
+// event Loop Execution Order Diagnosis
+// Predict the exact output sequence of the code below without executing it in an engine, and
+//  identify the order of task queue processing (Synchronous -> Microtask Queue -> Macrotask Queue)
+console.log("A");
 
-JavaScript
-async function main() {
-  const stack = [
-    async (ctx, next) => {
-      console.log('1. Start Middleware 1');
-      await next();
-      console.log('6. End Middleware 1');
-    },
-    async (ctx, next) => {
-      console.log('2. Start Middleware 2');
-      await next();
-      console.log('5. End Middleware 2');
-    },
-    async (ctx, next) => {
-      console.log('3. Start Middleware 3 (Core Handler)');
-      ctx.body = 'Hello, World!';
-      // await next() here triggers the end of the array, or we can omit it if it's the last one
-    }
-  ];
+setTimeout(() => {
+    console.log("B");
+}, 0);
 
-  const app = compose(stack);
-  const context = { req: {}, res: {} };
+Promise.resolve().then(() => {
+    console.log("C");
+});
 
-  await app(context);
-  console.log(`Final Response Body: ${context.body}`);
-}
+console.log("D");
 
-main();
+Promise.resolve().then(() => {
+    console.log("E");
+});
+
+setTimeout(() => {
+    console.log("F");
+}, 0);
+
+console.log("G");
